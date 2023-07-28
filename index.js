@@ -1,6 +1,9 @@
 const IMAGES_DIRECTORY = 'images/';
 const LOGO_COMPONENT_QUERY_SELECTOR = 'a[aria-label="Twitter"][href="/home"]';
+const TAB_LOGO_QUERY_SELECTOR = 'head>link[rel="shortcut icon"]';
+const TITLE_QUERY_SELECTOR = 'head>title';
 
+let titleComponent = null;
 let logoComponent = null;
 let logoURL = null;
 
@@ -11,6 +14,19 @@ const isTwitterUrl = (url) => {
 
 const getLogoURL = () => {
     return chrome.runtime.getURL(`${IMAGES_DIRECTORY}twitter_logo.svg`);
+};
+
+const replaceXWithTwitter = () => {
+    const title = titleComponent.innerHTML;
+
+    if (title === 'X') {
+        title = 'Twitter';
+    } else {
+        const regex = /\/ X$/;
+        title = title.replace(regex, "/ Twitter");
+    }
+
+    titleComponent.innerHTML = title;
 };
 
 const replaceXWithLogo = () => {
@@ -30,15 +46,15 @@ const replaceXWithLogo = () => {
  * thanks to Yong Wang for their answer on StackOverflow
  * https://stackoverflow.com/questions/5525071/how-to-wait-until-an-element-exists
  */
-const waitForLogoComponent = () => {
+const waitForComponent = (selector) => {
     return new Promise(resolve => {
-        if (document.querySelector(LOGO_COMPONENT_QUERY_SELECTOR)) {
-            return resolve(document.querySelector(LOGO_COMPONENT_QUERY_SELECTOR));
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
         }
 
         const observer = new MutationObserver(mutations => {
-            if (document.querySelector(LOGO_COMPONENT_QUERY_SELECTOR)) {
-                resolve(document.querySelector(LOGO_COMPONENT_QUERY_SELECTOR));
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
                 observer.disconnect();
             }
         });
@@ -57,7 +73,16 @@ const main = () => {
         return;
     }
 
-    waitForLogoComponent().then(elem => {
+    waitForComponent(TITLE_QUERY_SELECTOR).then(elem => {
+        titleComponent = elem;
+        replaceXWithTwitter();
+    });
+
+    waitForComponent(TAB_LOGO_QUERY_SELECTOR).then(elem => {
+        elem.href = logoURL;
+    });
+
+    waitForComponent(LOGO_COMPONENT_QUERY_SELECTOR).then(elem => {
         logoComponent = elem;
         logoURL = getLogoURL();
         replaceXWithLogo();
@@ -65,3 +90,6 @@ const main = () => {
 };
 
 main();
+
+// TODO: test
+setTimeout(main, 5000);
