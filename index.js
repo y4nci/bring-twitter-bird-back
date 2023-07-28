@@ -92,4 +92,6 @@ const main = () => {
     });
 };
 
-setTimeout(main, 250);
+setTimeout(main, 500);
+
+window.addEventListener('load', () => setTimeout(main, 500));
