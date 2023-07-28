@@ -17,7 +17,7 @@ const getLogoURL = () => {
 };
 
 const replaceXWithTwitter = () => {
-    const title = titleComponent.innerHTML;
+    let title = titleComponent.innerHTML;
 
     if (title === 'X') {
         title = 'Twitter';
@@ -73,6 +73,10 @@ const main = () => {
         return;
     }
 
+    console.log('Bringing the good ol\' bird back!');
+
+    logoURL = getLogoURL();
+
     waitForComponent(TITLE_QUERY_SELECTOR).then(elem => {
         titleComponent = elem;
         replaceXWithTwitter();
@@ -84,12 +88,8 @@ const main = () => {
 
     waitForComponent(LOGO_COMPONENT_QUERY_SELECTOR).then(elem => {
         logoComponent = elem;
-        logoURL = getLogoURL();
         replaceXWithLogo();
     });
 };
 
-main();
-
-// TODO: test
-setTimeout(main, 5000);
+setTimeout(main, 250);
