@@ -66,6 +66,11 @@ const main = () => {
     });
 };
 
+const isTwitterUrl = (url) => {
+    const regex = /https:\/\/twitter\.com\/(\w+)\/status\/(\d+)/;
+    return regex.test(url);
+};
+
 const isChromeUrl = (url) => {
     return url.startsWith('chrome://');
 };
@@ -105,7 +110,7 @@ const background = async () => {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     tabID = tabId;
 
-    if (isChromeUrl(tab.url)) {
+    if (isChromeUrl(tab.url) && !isTwitterUrl(tab.url)) {
         return;
     }
     if (tab.active && changeInfo.status === 'complete') {
