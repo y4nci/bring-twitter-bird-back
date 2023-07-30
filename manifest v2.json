@@ -8,19 +8,14 @@
         "js": ["index.js"],
         "run_at": "document_idle"
     }],
-    "host_permissions": [
+    "permissions": [
         "tabs",
         "activeTab",
         "https://twitter.com/*"
     ],
-    "web_accessible_resources": {
-        "resources": [
-            "images/*.png",
-            "images/*.svg"
-        ], 
-        "matches": [
-            "*://*/*"
-        ]
-    }
+    "web_accessible_resources": [
+        "images/*.png",
+        "images/*.svg"
+    ]
 }
   
