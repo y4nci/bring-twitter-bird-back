@@ -32,7 +32,6 @@ const main = () => {
 
     waitForComponent('head>title').then(elem => {
         const titleComponent = elem;
-        console.log(titleComponent);
         let title = titleComponent.innerHTML;
 
         if (title === 'X') {
@@ -46,7 +45,6 @@ const main = () => {
     });
 
     waitForComponent('head>link[rel="shortcut icon"]').then(elem => {
-        console.log(elem);
         elem.href = logoURL;
     });
 
@@ -94,8 +92,6 @@ const background = async () => {
     const currentTab = await getCurrentTab();
     if (!tabID) tabID = currentTab.id;
 
-    console.log(currentTab);
-
     if (isChromeUrl(currentTab.url)) {
         return;
     }
@@ -104,15 +100,12 @@ const background = async () => {
 };
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-    console.log('we up listenin stuff');
-
     tabID = tabId;
 
     if (isChromeUrl(tab.url)) {
         return;
     }
     if (tab.active && changeInfo.status === 'complete') {
-        console.log('we injectin');
         await injectScript(main);
     }
 });
