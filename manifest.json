@@ -2,6 +2,7 @@
     "manifest_version": 3,
     "name": "Bring the Twitter Bird Back",
     "version": "0.1",
+    "author": "Baran Yancı",
     "description": "A simple Chrome extension to bring the Twitter bird everyone loves back to the Twitter website.",
     "host_permissions": [
         "*://*.twitter.com/*"
