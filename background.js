@@ -50,6 +50,9 @@ const main = () => {
 
     waitForComponent('a[aria-label="Twitter"][href="/home"]').then(elem => {
         const logoComponent = elem;
+
+        if (logoComponent.firstChild.getAttribute('src') === logoURL) return;
+
         const logo = document.createElement('img');
 
         logo.src = logoURL;
