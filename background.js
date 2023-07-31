@@ -100,17 +100,6 @@ const injectScript = (func=main) => chrome.scripting.executeScript({
     function: func
 });
 
-const background = async () => {
-    const currentTab = await getCurrentTab();
-    if (!tabID) tabID = currentTab.id;
-
-    if (isChromeUrl(currentTab.url)) {
-        return;
-    }
-
-    injectScript();
-};
-
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     tabID = tabId;
 
