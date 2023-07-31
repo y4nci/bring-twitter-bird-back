@@ -26,6 +26,10 @@ const main = () => {
         });
     };
 
+    if (!/https:\/\/twitter\.com\/(\w+)\/status\/(\d+)/.test(window.location.href)) {
+        return;
+    }
+
     console.log('Bringing the good ol\' bird back!');
 
     const logoURL = chrome.runtime.getURL('images/twitter_logo.svg');
@@ -117,4 +121,3 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         await injectScript(main);
     }
 });
-
