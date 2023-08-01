@@ -3,11 +3,10 @@
     "name": "Bring the Twitter Bird Back",
     "version": "0.0",
     "description": "A simple Chrome extension to bring the Twitter bird everyone loves back to the Twitter website.",
-    "content_scripts": [{
-        "matches": ["https://twitter.com/*"],
-        "js": ["index.js"],
-        "run_at": "document_idle"
-    }],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     "permissions": [
         "tabs",
         "activeTab",
@@ -16,6 +15,13 @@
     "web_accessible_resources": [
         "images/*.png",
         "images/*.svg"
-    ]
+    ],
+    "actions": {
+        "default_icon": {
+            "16": "images/icons/light16.png",
+            "32": "images/icons/light32.png"
+        },
+        "default_title": "Bring the Twitter Bird Back"
+    }
 }
   

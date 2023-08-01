@@ -20,6 +20,23 @@
     ],
     "background": {
         "service_worker": "background.js"
+    },
+    "action": {
+        "default_icon": {
+            "16": "images/icons/light16.png",
+            "32": "images/icons/light32.png"
+        },
+        "default_title": "Bring the Twitter Bird Back",
+        "theme_icons": [{
+            "light": "images/icons/light16.png",
+            "dark": "images/icons/dark16.png",
+            "size": 16
+        },
+        {
+            "light": "images/icons/light32.png",
+            "dark": "images/icons/dark32.png",
+            "size": 32
+        }]
     }
 }
   
