@@ -26,10 +26,6 @@ const main = () => {
         });
     };
 
-    if (!/https:\/\/twitter\.com\/(\w+)\/status\/(\d+)/.test(window.location.href)) {
-        return;
-    }
-
     console.log('Bringing the good ol\' bird back!');
 
     const logoURL = chrome.runtime.getURL('images/twitter_logo.svg');
@@ -98,6 +94,21 @@ const injectScript = (func=main) => chrome.scripting.executeScript({
         allFrames: true
     },
     function: func
+});
+
+chrome.tabs.onActivated.addListener(async (activeInfo) => {
+    console.log(activeInfo);
+    tabID = activeInfo.tabId;
+    tab = await getCurrentTab();
+
+    console.log(tab.url);
+
+    if (isChromeUrl(tab.url) && !isTwitterUrl(tab.url)) {
+        return;
+    }
+    if (tab.active) {
+        await injectScript(main);
+    }
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
