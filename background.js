@@ -26,8 +26,6 @@ const main = () => {
         });
     };
 
-    console.log('Bringing the good ol\' bird back!');
-
     const logoURL = chrome.runtime.getURL('images/twitter_logo.svg');
 
     waitForComponent('head>title').then(elem => {
@@ -67,26 +65,9 @@ const main = () => {
 };
 
 const isTwitterUrl = (url) => {
-    const regex = /https:\/\/twitter\.com\/(\w+)\/status\/(\d+)/;
+    const regex = /https:\/\/twitter\.com\/.*/;
     return regex.test(url);
 };
-
-const isChromeUrl = (url) => {
-    return url.startsWith('chrome://');
-};
-
-const getCurrentTab = async() => {
-    let queryOptions = { active: true };
-    // `tab` will either be a `tabs.Tab` instance or `undefined`.
-    let [tab] = await chrome.tabs.query(queryOptions);
-
-    if (!tab) {
-        console.error('no active tab found');
-        return;
-    }
-
-    return tab;
-}
 
 const injectScript = (func=main) => chrome.scripting.executeScript({
     target: {
@@ -96,28 +77,10 @@ const injectScript = (func=main) => chrome.scripting.executeScript({
     function: func
 });
 
-chrome.tabs.onActivated.addListener(async (activeInfo) => {
-    console.log(activeInfo);
-    tabID = activeInfo.tabId;
-    tab = await getCurrentTab();
-
-    console.log(tab.url);
-
-    if (isChromeUrl(tab.url) && !isTwitterUrl(tab.url)) {
-        return;
-    }
-    if (tab.active) {
-        await injectScript(main);
-    }
-});
-
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     tabID = tabId;
 
-    if (isChromeUrl(tab.url) && !isTwitterUrl(tab.url)) {
-        return;
-    }
-    if (tab.active && changeInfo.status === 'complete') {
+    if (isTwitterUrl(tab.url) && changeInfo.status === 'complete') {
         await injectScript(main);
     }
 });
