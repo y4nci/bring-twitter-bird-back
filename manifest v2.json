@@ -10,7 +10,8 @@
     "permissions": [
         "tabs",
         "activeTab",
-        "https://twitter.com/*"
+        "declarativeContent",
+        "scripting"
     ],
     "web_accessible_resources": [
         "images/*.png",

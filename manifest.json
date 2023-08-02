@@ -5,7 +5,7 @@
     "author": "Baran Yancı",
     "description": "A simple Chrome extension to bring the Twitter bird everyone loves back to the Twitter website.",
     "host_permissions": [
-        "<all_urls>"
+        "*://*.twitter.com/*"
     ],
     "web_accessible_resources": [{
         "resources": ["/images/*"], 
@@ -14,7 +14,6 @@
     "permissions": [
         "activeTab",
         "declarativeContent",
-        "storage",
         "scripting",
         "tabs"
     ],
