@@ -13,7 +13,6 @@
     }],
     "permissions": [
         "activeTab",
-        "declarativeContent",
         "scripting",
         "tabs"
     ],

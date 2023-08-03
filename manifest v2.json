@@ -10,7 +10,6 @@
     "permissions": [
         "tabs",
         "activeTab",
-        "declarativeContent",
         "scripting"
     ],
     "web_accessible_resources": [
