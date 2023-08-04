@@ -1,17 +1,11 @@
-# bring-twitter-bird-back
+# [Bring the Twitter Bird Back](https://chrome.google.com/webstore/detail/bring-the-twitter-bird-ba/digdceeidmgbnjlmgjjcnndacaaobfgk)
 A simple Chrome extension to bring the Twitter bird everyone loves back to the Twitter website.
 
-## How to Install
- - Download and extract this repository (or clone via terminal).
- - Open chrome://extensions on your browser.
-    - You can install this extension on browsers like Google Chrome, Brave, Opera etc.
- - Ensure that the developer mode is enabled.
- - Click on 'Load Unpacked' and choose the root directory of this extension's source, which is what you downloaded.
- - The extension is installed!
+We all miss the iconic Twitter bird, right? Here is an extension for you to bring the bird back. The only thing you need to do is to install the extension and let it do its job!
 
-## How to Use
- - Open Twitter on your browser.
- - The Twitter bird is back! You do not need to do anything.
+If you have any issues or something's broken, you can open an issue [here](https://github.com/y4nci/bring-twitter-bird-back/issues).
+
+Special thanks to my sponsors, Görkem and Murat for their support.
 
 ## Reporting Issues
  - If you find any issues, please report them [here](https://github.com/y4nci/bring-twitter-bird-back/issues).
