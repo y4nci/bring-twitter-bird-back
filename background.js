@@ -46,7 +46,7 @@ const main = () => {
         elem.href = logoURL;
     });
 
-    waitForComponent('a[aria-label="Twitter"][href="/home"]').then(elem => {
+    waitForComponent('h1[role="heading"] > a').then(elem => {
         const logoComponent = elem;
 
         if (logoComponent.firstChild.getAttribute('src') === logoURL) return;
