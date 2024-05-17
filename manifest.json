@@ -1,15 +1,16 @@
 {
     "manifest_version": 3,
     "name": "Bring the Twitter Bird Back",
-    "version": "0.2",
+    "version": "0.3",
     "author": "Baran Yancı",
     "description": "A simple Chrome extension to bring the Twitter bird everyone loves back to the Twitter website.",
     "host_permissions": [
-        "*://*.twitter.com/*"
+        "*://*.twitter.com/*",
+        "*://*.x.com/*"
     ],
     "web_accessible_resources": [{
         "resources": ["/images/*"], 
-        "matches": ["*://*.twitter.com/*"]
+        "matches": ["*://*.twitter.com/*", "*://*.x.com/*"]
     }],
     "permissions": [
         "activeTab",

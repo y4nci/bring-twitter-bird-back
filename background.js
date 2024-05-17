@@ -64,8 +64,8 @@ const main = () => {
     });
 };
 
-const isTwitterUrl = (url) => {
-    const regex = /https:\/\/twitter\.com\/.*/;
+const isTwitterOrXUrl = (url) => {
+    const regex = /https:\/\/(x|twitter)\.com\/.*/;
     return regex.test(url);
 };
 
@@ -80,7 +80,7 @@ const injectScript = (func=main) => chrome.scripting.executeScript({
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     tabID = tabId;
 
-    if (isTwitterUrl(tab.url) && changeInfo.status === 'complete') {
+    if (isTwitterOrXUrl(tab.url) && changeInfo.status === 'complete') {
         await injectScript(main);
     }
 });
